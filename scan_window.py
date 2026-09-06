@@ -102,3 +102,4 @@ class Scan_window:
         self.root.update_idletasks()
         self.hopper_ID = self.root.after(channel_hop_period, self.channel_hop_caller)            
 
+
