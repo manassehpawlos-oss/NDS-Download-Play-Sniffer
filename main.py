@@ -37,7 +37,10 @@ class Main_window:
             selected_phy = phy_extractor(selected_option,self.options_dict)
             selected_wlan = self.options_dict[selected_phy]
             self.scan_window.dev_name = get_wlanmon_name(selected_wlan,selected_phy)
-            self.scan_window.mainframe.grid()            
+            if self.options_window.killwifi_state.get() is True:
+                subprocess.run(["sudo","systemctl","stop","NetworkManager"],stdout = subprocess.DEVNULL)
+            
+            self.scan_window.mainframe.grid()              
         else:
             self.options_window.selection_rejected()
     
