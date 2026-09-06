@@ -9,7 +9,7 @@ from ads.frame_fcts import *
 
 
 
-beacon_value_uniqueID = bytes.fromhex("0009BF000A00000001")
+beacon_value_uniqueID = bytes.fromhex("0009BF")
 radiotap_length = int(36)
 
 def frame_processor(ad_list, packet):
@@ -17,7 +17,7 @@ def frame_processor(ad_list, packet):
     start_of_data = packet_raw.find(beacon_value_uniqueID)
     frame_freq = packet.ChannelFrequency #actually not necessary
     
-    if start_of_data != -1:
+    if start_of_data == 52:
         if has_proper_CRC(packet_raw):
             frame_info_printer(packet_raw,start_of_data)
             frag_is_claimed = False
@@ -52,7 +52,7 @@ def channel_hopper(root, ad_list, current_channel):
         print(f"-----Object {ad_on_this_channel} still assembling, will remain on channel {current_channel}")
     else:
         new_channel = (current_channel+6)%18
-        print(f"-----------Hopping from channel {current_channel} to {new_channel}")
+        print(f"-hi----------Hopping from channel {current_channel} to {new_channel}")
         subprocess.run(["sudo", "iw", "wlan0mon", "set", "channel", str(new_channel)],
                        check=True, stdout = subprocess.DEVNULL)
         root.update_idletasks()        
@@ -63,10 +63,11 @@ def channel_hopper(root, ad_list, current_channel):
 
 def start_sniff(dev_name):
    sniff = AsyncSniffer(iface=dev_name, count = 0,
-                        filter = "less 250 && greater 200" +
+                        filter = "less 275 && greater 150" +
                         "&& wlan broadcast") 
    sniff.start()
    return sniff
 
 def initialize_wifi_card(initial_channel):
     subprocess.run(["sudo", "bash", "./bash_scripts/9271_init.sh",str(initial_channel)],check=True)
+
