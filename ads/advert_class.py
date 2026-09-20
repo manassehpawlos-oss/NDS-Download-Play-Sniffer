@@ -113,11 +113,11 @@ class Advertisement():
         else:
             return False
         
-    def update_seqnum_and_player_count(self,packet_raw): #known to give seqnum bugs
+    def update_seqnum_and_player_count(self,packet_raw): #09/20/'26 - seqnum bug should be fixed now.
         lower_byte = packet_raw[self.index_dict["seqnum"]]
-        lower_byte_calced = int(lower_byte/8)
+        lower_byte_calced = int(lower_byte/16)
         upper_byte = packet_raw[self.index_dict["seqnum"] + 1]
-        upper_byte_calced = int(upper_byte/8)*16*16+(upper_byte%8)*16
+        upper_byte_calced = int(upper_byte/16)*16*16+(upper_byte%16)*16
         
         self.seqnum = lower_byte_calced + upper_byte_calced
         self.current_players=int(packet_raw[self.index_dict["player_count"]])+1
