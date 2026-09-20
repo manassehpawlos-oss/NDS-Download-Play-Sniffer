@@ -35,7 +35,7 @@ def beacon_index_dict_assembler(dictionary, packet: bytes, index_NDS_start: int)
     dictionary["size"] = beacon_index_payload_size
     dictionary["player_count"] = beacon_index_frame_current_players
     dictionary["addr"] = beacon_index_addr_start
-    dictionary["seqnum"] = beacon_index_seqnum #lmao will need to account for unique little endian structure
+    dictionary["seqnum"] = beacon_index_seqnum 
     return True
 
 def fragment_collector(packet: bytes, index_dictionary, fragments_dictionary, length_of_frag,num):
