@@ -23,7 +23,7 @@ def initialize(ad):
     ad.bytestream = 0
     ad.name_length = 0
     ad.seqnum = 0
-    ad.addr = 0 #convert to int at some point to speed this up
+    ad.addr = 0 
     ad.current_players = 0
     ad.max_players = 0
     ad.player_count = 0
@@ -115,7 +115,7 @@ class Advertisement():
         
     def update_seqnum_and_player_count(self,packet_raw): #known to give seqnum bugs
         lower_byte = packet_raw[self.index_dict["seqnum"]]
-        lower_byte_calced = int(lower_byte/8) #+(lower_byte%8)*(16*16*16*16), ignored since its so... big. 
+        lower_byte_calced = int(lower_byte/8)
         upper_byte = packet_raw[self.index_dict["seqnum"] + 1]
         upper_byte_calced = int(upper_byte/8)*16*16+(upper_byte%8)*16
         
