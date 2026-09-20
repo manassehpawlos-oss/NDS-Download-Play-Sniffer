@@ -35,6 +35,7 @@ def initialize(ad):
     ad.palette_RGBA: list = []
     ad.tiles: list = []
     ad.image = 0 
+    
 class Advertisement():
     """The assembled frame and it's palette/tile data"""
     def __init__(self, ID: int):
