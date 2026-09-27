@@ -13,5 +13,6 @@ Credits to Micheal Noland for publicizing how the Download Play protocol works, 
 
 ----------------------
 Todo's:
-- Properly parse RT header for length
+- Properly parse RT header to get RT length
+- Either remove FCS or check RT to see if FCS was stripped by hardware
 - Replace airmon-ng with ip link and ifconfig; airmon-ng is bugged when I use Fedora on a second PC
