@@ -12,8 +12,11 @@ On program startup, the program will fetch a list of all relevant wifi adapters 
 Credits to Micheal Noland for publicizing how the Download Play protocol works, The Wayback Machine for saving the aforementioned info, and [this forum post](https://retrocomputing.stackexchange.com/questions/28071/how-can-i-communicate-with-a-nintendo-ds-using-the-download-play-protocol) for giving me a starting point.
 
 ----------------------
+This repo was my first attempt at using any programming language - there's quite a bit of confusing or technically inefficient code in some of the scripts. I've since ported the basic sniffing behavior to C.
+
+----------------------
 Todo's:
 - Properly parse RT header to get RT length
 - Either remove FCS or check RT to see if FCS was stripped by hardware
 - Replace airmon-ng with ip link and ifconfig; airmon-ng is bugged when I use Fedora on a second PC
-- Filter for NDS tag using BPF; no need to check frame validity in main script
+- Filter for NDS tag using BPF. More efficient than checking frame's validity within program.
